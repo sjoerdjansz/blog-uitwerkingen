@@ -15,7 +15,6 @@
   justify-content: flex-start;
   gap: 1rem;
   border-bottom: 2px solid var(--color-primary);
-  cursor: pointer;
 }
 
 .card__content-container {
@@ -32,4 +31,9 @@
 .card:hover {
   background-color: var(--color-gray-medium);
   color: var(--color-white);
+}
+
+.link {
+  color: var(--color-primary);
+  font-weight: 600;
 }

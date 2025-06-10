@@ -8,6 +8,7 @@ import { PageNotFound } from "./pages/404.jsx";
 import { BlogOverview } from "./pages/BlogOverview.jsx";
 import { NewPost } from "./pages/NewPost.jsx";
 import { Blogpost } from "./pages/Blogpost.jsx";
+import { Footer } from "./components/Footer.jsx";
 
 function App() {
   return (
@@ -19,9 +20,10 @@ function App() {
           <Route path="/blogs" element={<BlogOverview />} />
           <Route path="/new-post" element={<NewPost />} />
           <Route path="/blogs/:blogId" element={<Blogpost />} />
-          <Route path="/404" element={<PageNotFound />} />
+          <Route path="/*" element={<PageNotFound />} />
         </Routes>
       </div>
+      <Footer />
     </>
   );
 }

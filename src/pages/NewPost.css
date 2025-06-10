@@ -1,0 +1,33 @@
+.newpost-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 750px;
+  width: 100%;
+}
+
+.submit-button {
+  border: none;
+  padding: 1rem;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #4cd290;
+}
+
+.textarea-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+}

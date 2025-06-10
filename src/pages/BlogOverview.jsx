@@ -3,7 +3,6 @@ import blogs from "../constants/data.json";
 import "./BlogOverview.css";
 
 export function BlogOverview() {
-  console.log(blogs);
   return (
     <>
       <h1>Blog Overview</h1>
@@ -17,6 +16,8 @@ export function BlogOverview() {
               comments={blog.comments}
               shares={blog.shares}
               date={blog.created}
+              blogId={blog.id}
+              blogs={blogs}
             />
           );
         })}

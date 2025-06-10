@@ -1,15 +1,14 @@
 import "./Card.css";
+import { Link } from "react-router-dom";
+import { formatDate } from "../helpers/formatDate.js";
 
-export function Card({ title, author, comments, shares, date, onClick }) {
-  function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toISOString().split("T")[0];
-  }
-
+export function Card({ title, author, comments, shares, date, blogId }) {
   return (
     <article className="card">
       <div className="card__title-container">
-        <h4>{title}</h4>
+        <Link className="link" to={`/blogs/${blogId}`}>
+          {title}
+        </Link>
         <p>({author})</p>
       </div>
       <div className="card__content-container">
