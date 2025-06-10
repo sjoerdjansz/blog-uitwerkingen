@@ -11,16 +11,18 @@ import { Blogpost } from "./pages/Blogpost.jsx";
 
 function App() {
   return (
-    <div className="page-container">
+    <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blogs" element={<BlogOverview />} />
-        <Route path="/new-post" element={<NewPost />} />
-        <Route path="/blogs/:blogId" element={<Blogpost />} />
-        <Route path="/404" element={<PageNotFound />} />
-      </Routes>
-    </div>
+      <div className="page-container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/blogs" element={<BlogOverview />} />
+          <Route path="/new-post" element={<NewPost />} />
+          <Route path="/blogs/:blogId" element={<Blogpost />} />
+          <Route path="/404" element={<PageNotFound />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 

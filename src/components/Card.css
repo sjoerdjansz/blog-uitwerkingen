@@ -1,0 +1,35 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-gray-light);
+  padding: 1rem;
+  text-wrap: nowrap;
+  flex: 1;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.15);
+}
+
+.card__title-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  border-bottom: 2px solid var(--color-primary);
+  cursor: pointer;
+}
+
+.card__content-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.card__content-container * {
+  font-size: 0.8rem;
+}
+
+.card:hover {
+  background-color: var(--color-gray-medium);
+  color: var(--color-white);
+}
