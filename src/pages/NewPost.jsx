@@ -1,6 +1,10 @@
 import { InputField } from "../components/InputField.jsx";
 import "./NewPost.css";
 import { useState } from "react";
+import { calcReadTime } from "../helpers/readTime.js";
+import { useNavigate } from "react-router-dom";
+
+import { ThumbsUpIcon } from "@phosphor-icons/react";
 
 export function NewPost() {
   const [formData, setFormData] = useState({
@@ -8,13 +12,13 @@ export function NewPost() {
     subtitle: "",
     fullName: "",
     blogpost: "",
-    created: new Date().toISOString(),
+    created: "",
     readTime: 0,
     comments: 0,
     shares: 0,
   });
-
-  // TO DO: CREATE READTIME HELPER
+  const [succes, setSucces] = useState(false);
+  const navigate = useNavigate();
 
   function handleChange(e) {
     setFormData({
@@ -26,8 +30,16 @@ export function NewPost() {
   function handleSubmit(e) {
     e.preventDefault();
 
+    formData.created = new Date().toISOString();
+    formData.readTime = calcReadTime(formData.blogpost);
+
     console.log(formData);
 
+    setSucces(true);
+
+    setTimeout(() => {
+      navigate("/blogs");
+    }, 2000);
     setFormData({
       title: "",
       subtitle: "",
@@ -43,6 +55,12 @@ export function NewPost() {
   return (
     <div className="newpost-container">
       <h1>New Post</h1>
+      {succes && (
+        <div className="succes-message">
+          <ThumbsUpIcon size={24} />
+          De blog is geplaatst!
+        </div>
+      )}
       <form onSubmit={(e) => handleSubmit(e)}>
         <InputField
           name="title"

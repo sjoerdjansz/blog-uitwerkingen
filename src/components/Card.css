@@ -1,10 +1,12 @@
 .card {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: var(--color-gray-light);
   padding: 1rem;
-  text-wrap: nowrap;
-  flex: 1;
+  flex-basis: 400px;
+  flex-grow: 1;
+  flex-shrink: 1;
   border-radius: 0.5rem;
   box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.15);
 }
@@ -14,6 +16,7 @@
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
+  overflow: hidden;
   border-bottom: 2px solid var(--color-primary);
 }
 
@@ -35,5 +38,10 @@
 
 .link {
   color: var(--color-primary);
+  font-weight: 600;
+}
+
+.link:hover {
+  color: var(--color-white);
   font-weight: 600;
 }

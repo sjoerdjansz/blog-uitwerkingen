@@ -1,4 +1,23 @@
+.blogpost-page-container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.blogpost-page-container article {
+  background-color: var(--color-gray-light);
+  flex-basis: 700px;
+  flex-shrink: 1;
+  flex-grow: 0;
+  padding: 1rem;
+}
+
 .link {
   color: var(--color-primary);
   font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 0.3rem;
 }
