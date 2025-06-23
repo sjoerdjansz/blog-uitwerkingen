@@ -1,0 +1,33 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--color-gray-dark);
+  color: var(--color-white);
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+}
+
+nav > img {
+  height: 30px;
+}
+
+.nav-links-container {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.default-nav-link {
+  cursor: pointer;
+}
+
+.default-nav-link:hover {
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.active-nav-link {
+  border-bottom: 2px solid var(--color-primary);
+}

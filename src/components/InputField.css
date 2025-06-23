@@ -1,0 +1,18 @@
+label {
+  font-weight: 600;
+}
+
+input,
+textarea {
+  padding: 1rem;
+  width: 100%;
+  border: none;
+  background-color: var(--color-gray-light);
+}
+
+.input-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+}
