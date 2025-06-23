@@ -20,7 +20,7 @@ function App() {
           <Route path="/blogs" element={<BlogOverview />} />
           <Route path="/new-post" element={<NewPost />} />
           <Route path="/blogs/:blogId" element={<Blogpost />} />
-          <Route path="/*" element={<PageNotFound />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
       <Footer />

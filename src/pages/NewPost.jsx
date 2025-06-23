@@ -2,23 +2,45 @@ import { InputField } from "../components/InputField.jsx";
 import "./NewPost.css";
 import { useState } from "react";
 import { calcReadTime } from "../helpers/readTime.js";
-import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import { ThumbsUpIcon } from "@phosphor-icons/react";
+import axios from "axios";
 
 export function NewPost() {
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [blogId, setBlogId] = useState("");
   const [formData, setFormData] = useState({
     title: "",
     subtitle: "",
     fullName: "",
-    blogpost: "",
+    content: "",
+    author: "Sjoerd Jansz",
     created: "",
     readTime: 0,
     comments: 0,
     shares: 0,
   });
-  const [succes, setSucces] = useState(false);
-  const navigate = useNavigate();
+
+  async function addBlog(data) {
+    try {
+      const result = await axios.post(
+        `https://novi-backend-api-wgsgz.ondigitalocean.app/api/blogposts`,
+        data,
+        {
+          headers: {
+            "novi-education-project-id": "6528bba2-b1b4-4ab4-beb8-01354a92c74e",
+            "Content-Type": "application/json",
+          },
+        },
+      );
+      console.log(result);
+      setBlogId(result.data.id);
+    } catch (error) {
+      console.error(error);
+      setError(true);
+    }
+  }
 
   function handleChange(e) {
     setFormData({
@@ -27,38 +49,47 @@ export function NewPost() {
     });
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
-    formData.created = new Date().toISOString();
-    formData.readTime = calcReadTime(formData.blogpost);
+    const adjustedFormData = {
+      ...formData,
+      created: new Date().toISOString(),
+      readTime: calcReadTime(formData.content),
+    };
 
-    console.log(formData);
+    try {
+      await addBlog(adjustedFormData);
 
-    setSucces(true);
-
-    setTimeout(() => {
-      navigate("/blogs");
-    }, 2000);
-    setFormData({
-      title: "",
-      subtitle: "",
-      fullName: "",
-      blogpost: "",
-      created: "",
-      readTime: 0,
-      comments: 0,
-      shares: 0,
-    });
+      setFormData({
+        title: "",
+        subtitle: "",
+        fullName: "",
+        content: "",
+        author: "Sjoerd Jansz",
+        created: "",
+        readTime: 0,
+        comments: 0,
+        shares: 0,
+      });
+      setSuccess(true);
+      console.log(formData);
+    } catch (error) {
+      console.error("error in catch from handle submit " + error);
+      setError(true);
+    }
   }
 
   return (
     <div className="newpost-container">
       <h1>New Post</h1>
-      {succes && (
+      {error && <p className="error">Something went wrong</p>}
+
+      {success && (
         <div className="succes-message">
           <ThumbsUpIcon size={24} />
-          De blog is geplaatst!
+          De blogpost is succesvol toegevoegd. Je kunt deze
+          <Link to={`/blogs/${blogId}`}>hier bekijken.</Link>
         </div>
       )}
       <form onSubmit={(e) => handleSubmit(e)}>
@@ -84,16 +115,16 @@ export function NewPost() {
           value={formData.fullName}
         />
         <div className="textarea-field-wrapper">
-          <label htmlFor="blogpost">Blogpost</label>
+          <label htmlFor="content">content</label>
           <textarea
-            name="blogpost"
-            id="blogpost"
+            name="content"
+            id="content"
             cols="30"
             rows="10"
             minLength="300"
             maxLength="2000"
             onChange={handleChange}
-            value={formData.blogpost}
+            value={formData.content}
           ></textarea>
           <button className="submit-button" type="submit">
             Plaatsen
